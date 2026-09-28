@@ -40,6 +40,8 @@ import TruthOrDareGame from '@/components/games/TruthOrDareGame';
 import RandomLoveChallenge from '@/components/games/RandomLoveChallenge';
 import EmojiLoveQuiz from '@/components/games/EmojiLoveQuiz';
 import MemoryMatchGame from '@/components/games/MemoryMatchGame';
+import LoveCoupons from '@/components/games/LoveCoupons';
+import NeverHaveIEver from '@/components/games/NeverHaveIEver';
 
 import { THEMES } from '@/lib/themes';
 import { sfx } from '@/lib/audio';
@@ -59,7 +61,7 @@ export default function HomePage() {
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const [isOnboardingOpen, setIsOnboardingOpen] = useState(false);
   const [selectedGameTab, setSelectedGameTab] = useState<
-    'calculator' | 'date_wheel' | 'would_you_rather' | 'personality' | 'truth_dare' | 'challenge' | 'emoji' | 'memory'
+    'calculator' | 'date_wheel' | 'would_you_rather' | 'personality' | 'truth_dare' | 'challenge' | 'emoji' | 'memory' | 'coupons' | 'never_have_i_ever'
   >('calculator');
   const [selectedThemePreview, setSelectedThemePreview] = useState<keyof typeof THEMES>('romantic');
 
@@ -454,9 +456,11 @@ export default function HomePage() {
                 { id: 'would_you_rather', label: 'Would You Rather', icon: Heart },
                 { id: 'personality', label: 'Personality Test', icon: Award },
                 { id: 'truth_dare', label: 'Truth or Dare', icon: Flame },
+                { id: 'never_have_i_ever', label: 'Never Have I Ever', icon: Flame },
                 { id: 'challenge', label: 'Love Mission', icon: Sparkles },
                 { id: 'emoji', label: 'Emoji Riddle', icon: HelpCircle },
                 { id: 'memory', label: 'Memory Match', icon: Sparkles },
+                { id: 'coupons', label: 'Love Coupons', icon: Gift },
               ].map((tab) => {
                 const TabIcon = tab.icon;
                 const isSelected = selectedGameTab === tab.id;
@@ -491,6 +495,8 @@ export default function HomePage() {
             {selectedGameTab === 'challenge' && <RandomLoveChallenge />}
             {selectedGameTab === 'emoji' && <EmojiLoveQuiz />}
             {selectedGameTab === 'memory' && <MemoryMatchGame />}
+            {selectedGameTab === 'coupons' && <LoveCoupons />}
+            {selectedGameTab === 'never_have_i_ever' && <NeverHaveIEver />}
           </div>
         </section>
 

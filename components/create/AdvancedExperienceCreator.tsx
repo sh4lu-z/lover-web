@@ -8,6 +8,7 @@ import {
 import { ExperienceType, ThemeType, RevealStyle, ExperienceData } from '@/types/experience';
 import { THEMES } from '@/lib/themes';
 import { sfx } from '@/lib/audio';
+import { fetchSecureApi } from '@/lib/crypto';
 import confetti from 'canvas-confetti';
 import ShareModal from '@/components/common/ShareModal';
 import { APP_DOMAIN } from '@/lib/config';
@@ -143,7 +144,7 @@ export default function AdvancedExperienceCreator({
           : `A Secret Note for ${recipientName || 'You'}`,
       };
 
-      const res = await fetch('/api/experiences', {
+      const res = await fetchSecureApi('/api/experiences', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload),

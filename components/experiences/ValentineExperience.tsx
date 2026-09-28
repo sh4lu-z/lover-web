@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti';
 import { Heart, Sparkles, Share2, Award, Calendar, RefreshCw, Plus } from 'lucide-react';
 import { ExperienceData } from '@/types/experience';
 import { sfx } from '@/lib/audio';
+import { fetchSecureApi } from '@/lib/crypto';
 import { THEMES } from '@/lib/themes';
 import RomanticBackground from '@/components/common/RomanticBackground';
 import ReactionFloaters from '@/components/common/ReactionFloaters';
@@ -93,7 +94,7 @@ export default function ValentineExperience({
 
     // Persist Yes click
     try {
-      await fetch(`/api/experiences/${experience.slug}`, {
+      await fetchSecureApi(`/api/experiences/${experience.slug}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ yesClicked: true }),

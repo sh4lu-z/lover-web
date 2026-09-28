@@ -28,6 +28,7 @@ import AdvancedExperienceCreator from '@/components/create/AdvancedExperienceCre
 import ShareModal from '@/components/common/ShareModal';
 import { sfx } from '@/lib/audio';
 import { getAppUrl } from '@/lib/config';
+import { fetchSecureApi } from '@/lib/crypto';
 
 
 export default function VaultPage() {
@@ -146,7 +147,7 @@ export default function VaultPage() {
 
     // Remove from server (send creator token for authorization)
     try {
-      await fetch(`/api/experiences/${slug}?token=${encodeURIComponent(deleteToken)}`, {
+      await fetchSecureApi(`/api/experiences/${slug}?token=${encodeURIComponent(deleteToken)}`, {
         method: 'DELETE',
       });
     } catch {

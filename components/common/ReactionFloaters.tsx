@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { sfx } from '@/lib/audio';
+import { fetchSecureApi } from '@/lib/crypto';
 
 interface ReactionFloatersProps {
   slug: string;
@@ -67,7 +68,7 @@ export default function ReactionFloaters({
 
     // Call server to persist reaction
     try {
-      await fetch(`/api/experiences/${slug}`, {
+      await fetchSecureApi(`/api/experiences/${slug}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ reaction: emoji }),
