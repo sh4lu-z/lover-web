@@ -7,7 +7,7 @@ const ipRequestCounts = new Map<string, { count: number; resetTime: number }>();
 const RATE_LIMIT = 100; // max requests per window
 const WINDOW_MS = 60 * 1000; // 1 minute window
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Only apply to API routes
   if (request.nextUrl.pathname.startsWith('/api/')) {
     
